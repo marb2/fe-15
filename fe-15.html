@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>
+            fe-15
+        </title> 
+        <style>
+            table {
+                border:2px solid black;
+                margin-top:50px;
+            }
+            td {
+                border:1px solid orange;
+            }
+        </style>
+    </head>
+    <body>
+            <input type="text" placeholder="Data" id="data">  
+            <input type="text" placeholder="Numeris" id="numeris">  
+            <input type="text" placeholder="Atstumas" id="atstumas">  
+            <input type="text" placeholder="Laikas" id="laikas">  
+            <input type="button" value="Saugoti" id="mygtukas" onclick="funkcija()">
+        <table>
+            <thead>
+                <td>Data</td>
+                <td>Numeris</td>
+                <td>Atstumas</td>
+                <td>Laikas</td>
+            </thead>
+            <tbody>
+                <tr id="eilute">
+                
+                </tr>
+            </tbody>
+        </table>
+        <script>
+            duomenys=[];
+            function funkcija() {
+                duomenys.push (document.getElementById("data").value, document.getElementById("numeris").value, document.getElementById("atstumas").value, document.getElementById("laikas").value)
+                document.getElementById("data").value = ""; 
+                document.getElementById("numeris").value = ""; 
+                document.getElementById("atstumas").value = "";
+                document.getElementById("laikas").value = "";
+                for (i=0;i<duomenys.length;i++) {
+                    document.querySelector("#eilute").innerHTML+= '<td>' +duomenys[i]+ '</td>'; }
+
+            }
+
+
+        </script>
+    </body>
+</html>
