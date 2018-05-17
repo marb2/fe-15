@@ -16,38 +16,56 @@
         </style>
     </head>
     <body>
+        <form>
             <input type="text" placeholder="Data" id="data">  
             <input type="text" placeholder="Numeris" id="numeris">  
             <input type="text" placeholder="Atstumas" id="atstumas">  
             <input type="text" placeholder="Laikas" id="laikas">  
-            <input type="button" value="Saugoti" id="mygtukas" onclick="funkcija()">
-        <table>
-            <thead>
-                <td>Data</td>
-                <td>Numeris</td>
-                <td>Atstumas</td>
-                <td>Laikas</td>
-            </thead>
-            <tbody>
-                <tr id="eilute">
-                
-                </tr>
-            </tbody>
-        </table>
+            <input type="button" value="Saugoti" id="mygtukas" onclick="ideti()">
+        </form>
+            <div id="rodymas"></div>
         <script>
-            duomenys=[];
-            function funkcija() {
-                duomenys.push (document.getElementById("data").value, document.getElementById("numeris").value, document.getElementById("atstumas").value, document.getElementById("laikas").value)
-                document.getElementById("data").value = ""; 
-                document.getElementById("numeris").value = ""; 
-                document.getElementById("atstumas").value = "";
-                document.getElementById("laikas").value = "";
-                for (i=0;i<duomenys.length;i++) {
-                    document.querySelector("#eilute").innerHTML+= '<td>' +duomenys[i]+ '</td>'; }
-
+            duomenys = [];
+            var dataInput = document.getElementById("data");
+            var numerisInput = document.getElementById("numeris");
+            var atstumasInput = document.getElementById("atstumas");
+            var laikasInput = document.getElementById("laikas");
+            var rodymasInput = document.getElementById("rodymas");
+            
+            function ideti () {
+                var data, numeris, atstumas, laikas;
+                data = dataInput.value;
+                numeris = numerisInput.value;
+                atstumas = atstumasInput.value;
+                laikas = laikasInput.value;
+                duomenys.push({data:data, numeris:numeris, atstumas:atstumas, laikas:laikas});
+                isvalytiIrParodyti ();
+            }
+            function isvalytiIrParodyti() {
+                dataInput.value = "";
+                numerisInput.value = "";
+                atstumasInput.value = "";
+                laikasInput.value ="";
+                rodymas.innerHTML=sugeneruotasHtml();
             }
 
+            function sugeneruotasHtml () {
+                var html = '<table>';
+                html+= "<thead><td>Data</td> <td>Numeris</td> <td>Atstumas</td> <td>Laikas</td> </thead>";
+                console.log(duomenys);
+                duomenys.forEach(function(reiksme){
+                html += "<tr>";
+                html += "<td>" + reiksme.data + "</td>"
+                html += "<td>" + reiksme.numeris + "</td>"
+                html += "<td>" + reiksme.atstumas + "</td>"
+                html += "<td>" + reiksme.laikas + "</td>"
+                html += "</tr>";
+                });
 
+                html += "</table>"
+                return html;
+                
+            }
         </script>
     </body>
 </html>
